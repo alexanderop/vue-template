@@ -5,6 +5,11 @@
     "browser": true
   },
   "categories": {
-    "correctness": "error"
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "eslint/no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }
