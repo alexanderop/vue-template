@@ -1,0 +1,39 @@
+version: 2
+updates:
+  # npm ecosystem covers pnpm automatically (detects pnpm-lock.yaml)
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '06:00'
+      timezone: 'Europe/Berlin'
+    open-pull-requests-limit: 15
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+    groups:
+      patch-updates:
+        update-types:
+          - 'patch'
+      minor-dev-deps:
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+
+  # Keep GitHub Actions pinned versions up to date
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '06:00'
+      timezone: 'Europe/Berlin'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+      - 'github-actions'
