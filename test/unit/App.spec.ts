@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import App from '@/App.vue'
+import LandingPage from '@/views/LandingPage.vue'
 
-describe('App', () => {
-  it('mounts renders properly', () => {
-    const wrapper = mount(App)
-    expect(wrapper.text()).toContain('You did it!')
+describe('LandingPage', () => {
+  it('renders the heading', () => {
+    const wrapper = mount(LandingPage)
+    expect(wrapper.text()).toContain('Start building,')
   })
 })
