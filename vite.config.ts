@@ -22,9 +22,9 @@ export default defineConfig({
         image: 'public/pwa-icon.svg',
       },
       manifest: {
-        name: 'Vue Template',
-        short_name: 'VueTemplate',
-        description: 'A Vue 3 starter template with PWA support',
+        name: 'Todo App',
+        short_name: 'TodoApp',
+        description: 'A Vue 3 Todo app with IndexedDB persistence',
         theme_color: '#42b883',
         background_color: '#ffffff',
         display: 'standalone',

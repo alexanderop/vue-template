@@ -1,12 +1,11 @@
 {
   "extends": "../tsconfig.app.json",
 
-  "include": ["./unit/**/*", "../env.d.ts"],
+  "include": ["./unit/**/*", "./browser/**/*", "../env.d.ts"],
   "exclude": [],
 
   "compilerOptions": {
-    "lib": [],
-    "types": ["node", "jsdom"],
+    "types": ["node"],
 
     "tsBuildInfoFile": "../node_modules/.tmp/tsconfig.test.tsbuildinfo"
   }
