@@ -1,6 +1,4 @@
-import type { Rule } from 'eslint'
-
-const rule: Rule.RuleModule = {
+export default {
   meta: {
     type: 'suggestion',
     docs: {
@@ -40,5 +38,3 @@ const rule: Rule.RuleModule = {
     }
   },
 }
-
-export default rule

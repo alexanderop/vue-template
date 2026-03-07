@@ -1,9 +1,7 @@
-import type { Rule } from 'eslint'
-
 const HARDCODED_COLOR_PATTERN =
   /\b(?:bg|text|border|ring|outline|shadow|accent|caret|fill|stroke|decoration|divide|placeholder|from|via|to)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|black|white)-\d{2,3}\b/
 
-const rule: Rule.RuleModule = {
+export default {
   meta: {
     type: 'suggestion',
     docs: {
@@ -39,5 +37,3 @@ const rule: Rule.RuleModule = {
     }
   },
 }
-
-export default rule

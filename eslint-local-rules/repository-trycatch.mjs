@@ -1,8 +1,6 @@
-import type { Rule } from 'eslint'
-
 const REPOSITORY_PATTERN = /get\w*Repository/
 
-const rule: Rule.RuleModule = {
+export default {
   meta: {
     type: 'suggestion',
     docs: {
@@ -17,7 +15,6 @@ const rule: Rule.RuleModule = {
   create(context) {
     return {
       CallExpression(node) {
-        // Match pattern: get*Repository().someMethod()
         const callee = node.callee
         if (
           callee.type === 'MemberExpression' &&
@@ -25,7 +22,6 @@ const rule: Rule.RuleModule = {
           callee.object.callee.type === 'Identifier' &&
           REPOSITORY_PATTERN.test(callee.object.callee.name)
         ) {
-          // Check if already wrapped in tryCatch
           const parent = node.parent
           if (
             parent?.type === 'CallExpression' &&
@@ -35,7 +31,6 @@ const rule: Rule.RuleModule = {
             return
           }
 
-          // Also allow if it's the argument to an await inside tryCatch
           const grandparent = parent?.parent
           if (
             parent?.type === 'AwaitExpression' &&
@@ -52,5 +47,3 @@ const rule: Rule.RuleModule = {
     }
   },
 }
-
-export default rule

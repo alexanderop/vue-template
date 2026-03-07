@@ -5,11 +5,13 @@ export default {
   project: ['src/**/*.{ts,vue}', 'test/**/*.ts'],
   ignore: ['src/stores/counter.ts'],
   ignoreDependencies: [
-    // Used transitively via eslint config
-    '@eslint-community/eslint-plugin-eslint-comments',
     // Imported in CSS via @import 'tailwindcss'
     'tailwindcss',
     // Starter dependency — used across project templates
     '@vueuse/core',
+    // Referenced in .oxlintrc.json jsPlugins, not importable code
+    'eslint-plugin-unicorn',
+    '@vitest/eslint-plugin',
+    'eslint-plugin-playwright',
   ],
 } satisfies KnipConfig

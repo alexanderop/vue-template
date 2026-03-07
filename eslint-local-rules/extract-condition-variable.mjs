@@ -1,13 +1,11 @@
-import type { Rule } from 'eslint'
-
-function countLogicalOperators(node: Rule.Node): number {
+function countLogicalOperators(node) {
   if (node.type === 'LogicalExpression') {
-    return 1 + countLogicalOperators(node.left as Rule.Node) + countLogicalOperators(node.right as Rule.Node)
+    return 1 + countLogicalOperators(node.left) + countLogicalOperators(node.right)
   }
   return 0
 }
 
-const rule: Rule.RuleModule = {
+export default {
   meta: {
     type: 'suggestion',
     docs: {
@@ -20,11 +18,10 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function check(node: Rule.Node) {
-      const testNode = (node as unknown as { test?: Rule.Node }).test
+    function check(node) {
+      const testNode = node.test
       if (!testNode) return
 
-      // Skip if the test is already a simple identifier (already extracted)
       if (testNode.type === 'Identifier') return
 
       const count = countLogicalOperators(testNode)
@@ -44,5 +41,3 @@ const rule: Rule.RuleModule = {
     }
   },
 }
-
-export default rule

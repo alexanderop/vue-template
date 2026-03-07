@@ -1,9 +1,8 @@
-import type { Rule } from 'eslint'
 import path from 'node:path'
 
 const VUE_IMPORTS = ['vue', '@vueuse/core', '@vueuse/integrations', 'vue-router', 'pinia']
 
-const rule: Rule.RuleModule = {
+export default {
   meta: {
     type: 'suggestion',
     docs: {
@@ -27,7 +26,7 @@ const rule: Rule.RuleModule = {
 
     return {
       ImportDeclaration(node) {
-        const source = node.source.value as string
+        const source = node.source.value
         if (
           VUE_IMPORTS.some((pkg) => source === pkg || source.startsWith(`${pkg}/`)) ||
           /\/use[A-Z]/.test(source)
@@ -47,5 +46,3 @@ const rule: Rule.RuleModule = {
     }
   },
 }
-
-export default rule

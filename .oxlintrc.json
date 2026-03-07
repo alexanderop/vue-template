@@ -9,8 +9,80 @@
     "correctness": "error",
     "suspicious": "warn"
   },
+  "jsPlugins": [
+    { "name": "unicorn-js", "specifier": "eslint-plugin-unicorn" },
+    { "name": "vitest-js", "specifier": "@vitest/eslint-plugin" },
+    "eslint-plugin-playwright",
+    { "name": "local", "specifier": "./eslint-local-rules/plugin.mjs" }
+  ],
   "rules": {
     "typescript/no-explicit-any": "error",
-    "eslint/no-console": ["error", { "allow": ["warn", "error"] }]
-  }
+    "eslint/no-console": ["error", { "allow": ["warn", "error"] }],
+
+    "unicorn/no-null": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-await-expression-member": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/no-useless-undefined": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.{ts,vue}"],
+      "rules": {
+        "eslint/complexity": ["warn", { "max": 10 }],
+        "eslint/no-nested-ternary": "error",
+        "typescript/consistent-type-assertions": ["error", { "assertionStyle": "never" }],
+
+        "local/no-hardcoded-colors": "warn",
+        "local/composable-must-use-vue": "error",
+        "local/no-let-in-describe": "error",
+        "local/extract-condition-variable": "warn",
+        "local/repository-trycatch": "error",
+        "local/no-enum": "error",
+        "local/no-else": "error",
+        "local/no-try-statement": "error",
+
+        "unicorn-js/better-regex": "warn",
+        "unicorn-js/custom-error-definition": "error",
+        "unicorn-js/no-unused-properties": "warn",
+        "unicorn-js/consistent-destructuring": "warn"
+      }
+    },
+    {
+      "files": ["**/*.vue"],
+      "rules": {
+        "vue/define-props-destructuring": "error",
+        "vue/max-props": ["warn", { "maxProps": 6 }]
+      }
+    },
+    {
+      "files": ["test/unit/**/*.{test,spec}.{js,ts}"],
+      "rules": {
+        "vitest-js/prefer-to-be": "warn",
+        "vitest-js/prefer-to-have-length": "warn",
+        "vitest-js/prefer-to-contain": "warn",
+        "vitest-js/prefer-mock-promise-shorthand": "warn",
+
+        "vitest-js/consistent-test-it": ["error", { "fn": "it" }],
+        "vitest-js/prefer-hooks-on-top": "error",
+        "vitest-js/prefer-hooks-in-order": "error",
+        "vitest-js/no-duplicate-hooks": "error",
+        "vitest-js/require-top-level-describe": "error",
+        "vitest-js/max-nested-describe": ["error", { "max": 2 }],
+        "vitest-js/no-conditional-in-test": "warn"
+      }
+    },
+    {
+      "files": ["e2e/**/*.{test,spec}.{js,ts,jsx,tsx}"],
+      "rules": {
+        "playwright/no-focused-test": "error",
+        "playwright/no-skipped-test": "warn",
+        "playwright/valid-expect": "error",
+        "playwright/no-conditional-in-test": "warn",
+        "playwright/no-wait-for-timeout": "warn",
+        "playwright/no-force-option": "warn"
+      }
+    }
+  ]
 }
