@@ -7,7 +7,9 @@ export default {
   ignoreDependencies: [
     // Used transitively via eslint config
     '@eslint-community/eslint-plugin-eslint-comments',
-    // Used via CLI script and vite plugin integration
-    '@vite-pwa/assets-generator',
+    // Imported in CSS via @import 'tailwindcss'
+    'tailwindcss',
+    // Starter dependency — used across project templates
+    '@vueuse/core',
   ],
 } satisfies KnipConfig
