@@ -7,5 +7,7 @@ export default {
   ignoreDependencies: [
     // Used transitively via eslint config
     '@eslint-community/eslint-plugin-eslint-comments',
+    // Used via CLI script and vite plugin integration
+    '@vite-pwa/assets-generator',
   ],
 } satisfies KnipConfig
