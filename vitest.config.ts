@@ -7,8 +7,15 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'jsdom',
+      include: ['test/unit/**/*.{test,spec}.{js,ts}'],
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'lcov'],
+        include: ['src/**/*.{ts,vue}'],
+        exclude: ['src/main.ts', 'src/**/*.d.ts'],
+      },
     },
   }),
 )

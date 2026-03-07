@@ -34,10 +34,7 @@ export default defineConfigWithVueTs(
     rules: {
       complexity: ['warn', { max: 10 }],
       'no-nested-ternary': 'error',
-      '@typescript-eslint/consistent-type-assertions': [
-        'error',
-        { assertionStyle: 'never' },
-      ],
+      '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'never' }],
       'no-restricted-syntax': [
         'error',
         {
@@ -46,8 +43,7 @@ export default defineConfigWithVueTs(
         },
         {
           selector: 'IfStatement > IfStatement.alternate',
-          message:
-            'No else-if. Use early returns, guard clauses, or a lookup map.',
+          message: 'No else-if. Use early returns, guard clauses, or a lookup map.',
         },
         {
           selector: 'IfStatement > :not(IfStatement).alternate',
@@ -56,8 +52,7 @@ export default defineConfigWithVueTs(
         },
         {
           selector: 'TryStatement',
-          message:
-            'No try/catch. Use tryCatch() utility for explicit error handling.',
+          message: 'No try/catch. Use tryCatch() utility for explicit error handling.',
         },
         // Uncomment to enforce named routes:
         // {
@@ -162,7 +157,7 @@ export default defineConfigWithVueTs(
   {
     ...pluginVitest.configs.recommended,
     name: 'app/vitest',
-    files: ['src/**/__tests__/*'],
+    files: ['test/unit/**/*.{test,spec}.{js,ts}'],
     rules: {
       ...pluginVitest.configs.recommended.rules,
       // Assertions
@@ -184,10 +179,8 @@ export default defineConfigWithVueTs(
       'no-restricted-syntax': [
         'warn',
         {
-          selector:
-            'CallExpression[callee.property.name="querySelector"]',
-          message:
-            'Prefer testing-library queries or Playwright locators over querySelector.',
+          selector: 'CallExpression[callee.property.name="querySelector"]',
+          message: 'Prefer testing-library queries or Playwright locators over querySelector.',
         },
       ],
     },
@@ -198,7 +191,7 @@ export default defineConfigWithVueTs(
   // ---------------------------------------------------------------------------
   {
     name: 'app/test-helpers',
-    files: ['src/**/__tests__/**'],
+    files: ['test/unit/**'],
     rules: {
       // Uncomment when you have a custom render wrapper:
       // 'no-restricted-imports': ['error', {

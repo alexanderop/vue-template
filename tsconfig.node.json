@@ -4,9 +4,8 @@
   "include": [
     "vite.config.*",
     "vitest.config.*",
-    "cypress.config.*",
-    "nightwatch.conf.*",
     "playwright.config.*",
+    "knip.config.*",
     "eslint.config.*",
     "eslint-local-rules/**/*"
   ],

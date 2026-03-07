@@ -14,7 +14,10 @@
     "lint": "run-s lint:*",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "oxfmt src/"
+    "format": "oxfmt src/ test/ e2e/",
+    "test:unit:coverage": "vitest run --coverage",
+    "knip": "knip",
+    "postinstall": "simple-git-hooks"
   },
   "dependencies": {
     "pinia": "^3.0.4",
@@ -29,6 +32,7 @@
     "@types/node": "^24.11.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",
+    "@vitest/coverage-v8": "^4.0.18",
     "@vitest/eslint-plugin": "^1.6.9",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.6",
@@ -42,16 +46,39 @@
     "eslint-plugin-vue": "~10.8.0",
     "jiti": "^2.6.1",
     "jsdom": "^28.1.0",
+    "knip": "^5.85.0",
+    "lint-staged": "^16.3.2",
     "npm-run-all2": "^8.0.4",
     "oxfmt": "^0.35.0",
     "oxlint": "~1.50.0",
+    "simple-git-hooks": "^2.13.1",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-vue-devtools": "^8.0.6",
     "vitest": "^4.0.18",
     "vue-tsc": "^3.2.5"
   },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": [
+      "oxlint --fix",
+      "eslint --fix --cache"
+    ],
+    "*.{ts,tsx,vue,json,md,yaml,yml,html}": [
+      "oxfmt"
+    ]
+  },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "simple-git-hooks",
+      "unrs-resolver"
+    ]
   }
 }
