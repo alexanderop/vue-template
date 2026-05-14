@@ -68,7 +68,11 @@ onClickOutside(itemRef, () => {
     ref="itemRef"
     class="group flex items-center gap-3 rounded-lg border border-border bg-surface-raised px-4 py-3 transition-colors hover:border-border-hover"
   >
-    <BaseCheckbox :model-value="todo.completed" @update:model-value="handleToggle" />
+    <BaseCheckbox
+      :model-value="todo.completed"
+      :aria-label="`Toggle '${todo.title}'`"
+      @update:model-value="handleToggle"
+    />
 
     <div v-if="isEditing" class="flex-1">
       <input

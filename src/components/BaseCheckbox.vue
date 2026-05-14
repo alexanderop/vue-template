@@ -6,10 +6,11 @@ defineExpose({})
 interface Props {
   modelValue: boolean
   label?: string
+  ariaLabel?: string
   id?: string
 }
 
-const { modelValue, label, id } = defineProps<Props>()
+const { modelValue, label, ariaLabel, id } = defineProps<Props>()
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
@@ -28,6 +29,7 @@ function onChange(): void {
       :id="generatedId"
       type="checkbox"
       :checked="modelValue"
+      :aria-label="ariaLabel"
       class="size-4 rounded border-border accent-primary"
       @change="onChange"
     />
