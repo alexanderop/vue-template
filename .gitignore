@@ -39,3 +39,4 @@ __screenshots__/
 
 test-results/
 playwright-report/
+test-report.junit.xml
