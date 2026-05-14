@@ -76,6 +76,7 @@ export function useIndexedDb<T extends { id: string }>(
         .then((store) => idbRequest(store.getAll()))
         .then((all) => {
           items.value = all
+          isReady.value = true
           return all
         }),
     )

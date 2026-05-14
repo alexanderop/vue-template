@@ -30,7 +30,6 @@ export const useTodoStore = defineStore('todo', () => {
       if (result.error) {
         console.error('Failed to load todos:', result.error)
       }
-      isReady.value = true
     })
   }
 

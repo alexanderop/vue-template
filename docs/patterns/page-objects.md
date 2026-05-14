@@ -1,5 +1,9 @@
 # Page Objects for browser tests
 
+> _No in-repo example yet — pattern proposal._ Browser tests today
+> (`test/browser/*.spec.ts`) drive the DOM inline. Lift to a Page Object the
+> second time two tests want the same flow, following the shape below.
+
 A Page Object (PO) is a class that wraps the awkward bits of driving a view
 — dialog waits, exact-name selection, single-visible-element navigation —
 so spec files read like English and the awkward bits live in one place.

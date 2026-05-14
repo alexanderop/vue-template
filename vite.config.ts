@@ -21,11 +21,14 @@ export default defineConfig({
         preset: 'minimal-2023',
         image: 'public/pwa-icon.svg',
       },
+      // Demo manifest. Rename name / short_name / description / theme_color
+      // when forking. Keep this block in sync with index.html.
       manifest: {
-        name: 'Todo App',
-        short_name: 'TodoApp',
-        description: 'A Vue 3 Todo app with IndexedDB persistence',
-        theme_color: '#42b883',
+        name: 'Vue Starter — Todo Demo',
+        short_name: 'VueStarter',
+        description:
+          'Vue 3 starter — agent-optimized. Ships with a Todo app as the reference feature.',
+        theme_color: '#0f172a',
         background_color: '#ffffff',
         display: 'standalone',
         scope: '/',

@@ -3,6 +3,24 @@
 Recipe for "I want a new domain feature like Todos, but for X". Mirror the
 Todo feature's shape.
 
+## Reference files (read these first)
+
+The Todo feature is the canonical implementation across every layer. Skim
+these in order before writing your own:
+
+| File                                                                       | Layer                               |
+| -------------------------------------------------------------------------- | ----------------------------------- |
+| `src/types/todo.ts`                                                        | Domain types                        |
+| `src/utils/tryCatch.ts`                                                    | `Result<T>` utility                 |
+| `src/composables/useIndexedDb.ts`                                          | Reusable IndexedDB composable       |
+| `src/stores/todo.ts`                                                       | Pinia setup-store                   |
+| `src/components/todo/{TodoApp,TodoForm,TodoFilters,TodoList,TodoItem}.vue` | Feature components                  |
+| `src/views/TodoPage.vue`                                                   | Route-level wrapper                 |
+| `test/unit/stores/todo.spec.ts`                                            | Store unit test (mocked composable) |
+| `test/browser/TodoApp.browser.spec.ts`                                     | Browser component test              |
+| `test/browser/a11y.spec.ts`                                                | a11y coverage (axe-core)            |
+| `e2e/todo.spec.ts`                                                         | Playwright end-to-end               |
+
 ## 1. Domain types — `src/types/<feature>.ts`
 
 ```ts

@@ -2,8 +2,6 @@
 import { useTodoStore } from '@/stores/todo'
 import TodoItem from '@/components/todo/TodoItem.vue'
 
-defineExpose({})
-
 const store = useTodoStore()
 </script>
 

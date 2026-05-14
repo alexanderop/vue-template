@@ -119,5 +119,12 @@ layering.
   — swap it for `useLocalStorage` and the store doesn't change shape.
 - **Stores stay testable.** Feature logic is exercised without mounting Vue.
   See `test/unit/stores/`.
-- **Lint enforces the boundaries.** Bypassing the layering (e.g. `try/catch`
-  in a component) trips a custom rule.
+- **Lint enforces the boundaries.** Bypassing the layering trips a custom
+  rule:
+  - `local/no-layer-skip` — `Base*.vue` may not import stores or
+    composables; composables may not import components or stores.
+  - `local/no-prop-callbacks` — components communicate up via `defineEmits`,
+    not callback props.
+  - `local/no-try-statement` + `local/no-unchecked-result` — every async
+    path produces a checked `Result<T>` (see
+    [error-handling.md](./patterns/error-handling.md)).

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineExpose({})
-
 type ButtonVariant = 'danger' | 'primary' | 'secondary'
 type ButtonSize = 'lg' | 'md' | 'sm'
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineExpose({})
-
 type CardPadding = 'lg' | 'md' | 'none' | 'sm'
 
 interface Props {

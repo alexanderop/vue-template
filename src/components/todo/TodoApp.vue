@@ -7,8 +7,6 @@ import TodoForm from '@/components/todo/TodoForm.vue'
 import TodoFilters from '@/components/todo/TodoFilters.vue'
 import TodoList from '@/components/todo/TodoList.vue'
 
-defineExpose({})
-
 const store = useTodoStore()
 
 onMounted(() => {

@@ -1,5 +1,10 @@
 # Test factories
 
+> _No in-repo example yet — pattern proposal._ The reference Todo test
+> (`test/unit/stores/todo.spec.ts`) still uses an inline `makeTodo()` helper.
+> When the second feature lands, lift the factory into
+> `src/__tests__/factories/todo.factory.ts` following the shape below.
+
 Every shape that appears in more than one test gets a factory in
 `src/__tests__/factories/`. Inline ad-hoc objects (`const todo = { id: 1, text: 'x', done: false }`)
 are the main source of duplication in test suites — they look harmless until

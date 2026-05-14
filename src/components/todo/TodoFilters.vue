@@ -3,8 +3,6 @@ import type { TodoFilter } from '@/types/todo'
 import BaseButton from '@/components/BaseButton.vue'
 import { useTodoStore } from '@/stores/todo'
 
-defineExpose({})
-
 const store = useTodoStore()
 
 const FILTERS: TodoFilter[] = ['all', 'active', 'completed']

@@ -1,12 +1,13 @@
 import path from 'node:path'
 
 const VUE_IMPORTS = ['vue', '@vueuse/core', '@vueuse/integrations', 'vue-router', 'pinia']
+const COMPOSABLE_EXTENSIONS = new Set(['.ts', '.mts', '.cts', '.tsx'])
 
 export default {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Composables (use*.ts files) must import from Vue or VueUse',
+      description: 'Composables (use*.{ts,mts,cts,tsx} files) must import from Vue or VueUse',
     },
     messages: {
       mustUseVue:
@@ -16,9 +17,12 @@ export default {
   },
   create(context) {
     const filename = context.filename
-    const basename = path.basename(filename, path.extname(filename))
+    const ext = path.extname(filename)
+    const basename = path.basename(filename, ext)
 
-    if (!basename.startsWith('use') || !filename.endsWith('.ts')) {
+    const isComposableFile =
+      /^use[A-Z]/.test(basename) && COMPOSABLE_EXTENSIONS.has(ext)
+    if (!isComposableFile) {
       return {}
     }
 

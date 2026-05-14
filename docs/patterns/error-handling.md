@@ -45,9 +45,11 @@ if (result.error) {
 
 ## Where it's enforced
 
-- `local/no-try-statement` — bans the keyword in `src/`.
-- `local/repository-trycatch` — store-like async methods must route through
-  `tryCatch` (or be annotated as intentionally bare).
+- `local/no-try-statement` — bans the `try { } catch { }` keyword in `src/`.
+- `local/no-unchecked-result` — bans **discarding** the return of
+  `tryCatch(...)`. Without this, banning `try/catch` only moves the swallow
+  one level up (`await tryCatch(x)` with no destructure). Together they
+  guarantee every async path produces a checked `Result<T>`.
 
 ## Where it's allowed
 

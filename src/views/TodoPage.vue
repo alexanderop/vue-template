@@ -2,8 +2,6 @@
 import { useOnline } from '@vueuse/core'
 import TodoApp from '@/components/todo/TodoApp.vue'
 
-defineExpose({})
-
 const isOnline = useOnline()
 </script>
 

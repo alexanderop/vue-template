@@ -16,7 +16,7 @@ Todo app (IndexedDB-backed) as the reference feature.
 - **vite-plugin-pwa** — PWA support.
 - **oxlint** + **oxfmt** — Rust-based lint and format. Custom local rules live in
   `eslint-local-rules/`.
-- **Vitest** — unit (jsdom) + browser (Playwright provider) tests.
+- **Vitest** — unit (node env) + browser (Playwright provider) tests.
 - **Playwright** — e2e tests.
 - **knip** — unused-code / dependency detection.
 
@@ -31,13 +31,34 @@ Todo app (IndexedDB-backed) as the reference feature.
 | `pnpm type-check`   | `vue-tsc --build`                               |
 | `pnpm lint`         | `oxlint . --fix`                                |
 | `pnpm format`       | `oxfmt src/ test/ e2e/`                         |
-| `pnpm test:unit`    | Vitest unit project (jsdom)                     |
+| `pnpm test:unit`    | Vitest unit project (node env)                  |
 | `pnpm test:browser` | Vitest browser project (Playwright)             |
 | `pnpm test:e2e`     | Playwright e2e — needs `pnpm build` first on CI |
 | `pnpm knip`         | report unused exports / files / deps            |
 
 Before declaring a change done: `pnpm type-check && pnpm lint && pnpm test:unit`.
 For UI changes, also exercise the flow in `pnpm dev` and run `pnpm test:browser`.
+
+## Boundary rules (enforced by lint)
+
+These trip a hard error in `src/**/*.{ts,vue}`. Read
+[`docs/patterns/local-lint-rules.md`](./docs/patterns/local-lint-rules.md) for
+the why behind each.
+
+| Rule                                    | Bans                                                                              |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| `local/no-try-statement`                | `try { } catch { }` — use `tryCatch` instead                                      |
+| `local/no-unchecked-result`             | discarding the return of `tryCatch(...)`                                          |
+| `local/no-else`                         | `else` / `else if` — early-return instead                                         |
+| `local/no-enum`                         | TS `enum` — use union literals                                                    |
+| `local/no-hardcoded-colors`             | Tailwind palette + `#hex` / `rgb()` / `hsl()`                                     |
+| `local/composable-must-use-vue`         | `use*` files that don't touch reactivity                                          |
+| `local/no-layer-skip`                   | `Base*.vue` importing stores/composables; composables importing components/stores |
+| `local/no-prop-callbacks`               | callback props — use `defineEmits` instead                                        |
+| `local/no-let-in-describe`              | `let` at the top of `describe` (tests)                                            |
+| `typescript/consistent-type-assertions` | `value as T` / `<T>value` — narrow instead                                        |
+| `vue/define-props-destructuring`        | non-destructured `defineProps`                                                    |
+| `vue/max-props`                         | > 6 props per component (warn)                                                    |
 
 ## Before you change anything
 

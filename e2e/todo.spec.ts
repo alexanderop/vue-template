@@ -21,7 +21,8 @@ test.describe('Todo App', () => {
     const input = page.getByPlaceholder('What needs to be done?')
     await input.fill('Walk the dog')
     await page.getByRole('button', { name: 'Add' }).click()
-    await page.locator('input[type="checkbox"]').first().click()
+    const row = page.getByRole('listitem').filter({ hasText: 'Walk the dog' })
+    await row.getByRole('checkbox', { name: /Toggle 'Walk the dog'/ }).click()
     await expect(page.getByText('Walk the dog')).toHaveClass(/line-through/)
   })
 
@@ -34,8 +35,8 @@ test.describe('Todo App', () => {
     await input.fill('Completed task')
     await page.getByRole('button', { name: 'Add' }).click()
 
-    // Complete the second todo
-    await page.locator('input[type="checkbox"]').nth(1).click()
+    const completedRow = page.getByRole('listitem').filter({ hasText: 'Completed task' })
+    await completedRow.getByRole('checkbox', { name: /Toggle 'Completed task'/ }).click()
 
     await page.getByRole('button', { name: 'Active' }).click()
     await expect(page.getByText('Active task')).toBeVisible()
@@ -71,7 +72,8 @@ test.describe('Todo App', () => {
     await input.fill('Clear me')
     await page.getByRole('button', { name: 'Add' }).click()
 
-    await page.locator('input[type="checkbox"]').nth(1).click()
+    const clearRow = page.getByRole('listitem').filter({ hasText: 'Clear me' })
+    await clearRow.getByRole('checkbox', { name: /Toggle 'Clear me'/ }).click()
     await page.getByRole('button', { name: 'Clear completed' }).click()
 
     await expect(page.getByText('Keep me')).toBeVisible()

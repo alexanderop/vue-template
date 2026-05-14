@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useId } from 'vue'
 
-defineExpose({})
-
 interface Props {
   modelValue: string
   label?: string

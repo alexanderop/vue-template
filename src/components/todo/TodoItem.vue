@@ -7,8 +7,6 @@ import BaseButton from '@/components/BaseButton.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
 import { useTodoStore } from '@/stores/todo'
 
-defineExpose({})
-
 interface Props {
   todo: Todo
 }

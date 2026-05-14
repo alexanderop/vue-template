@@ -1,5 +1,11 @@
 # Variant props
 
+> _No in-repo example yet — pattern proposal._ `BaseButton` and `BaseBadge`
+> use a simpler `Record<Variant, string>` lookup, which is fine when all
+> variants accept the same props. Reach for the discriminated-union shape
+> below when a variant introduces _new required props_ that don't apply to
+> the others.
+
 A pattern for components whose props are **conditionally valid** — i.e. prop B
 is only meaningful (or required) when prop A has a specific value.
 
@@ -24,6 +30,9 @@ type Props =
   | { variant: 'text'; label: string }
   | { variant: 'icon'; iconName: string; ariaLabel: string }
 
+// `vue/define-props-destructuring` requires destructuring. With a
+// discriminated union, narrow on the discriminant first via a const so
+// TypeScript can refine the rest of the props.
 const props = defineProps<Props>()
 </script>
 
@@ -37,6 +46,13 @@ const props = defineProps<Props>()
 
 Inside the template, `props.variant === 'text'` narrows the union the same way
 it would in a `.ts` file — `props.iconName` is unreachable in the text branch.
+
+> **Why `props` instead of destructured fields?** Vue's
+> `vue/define-props-destructuring` rule is `error` in this repo, but
+> destructuring a discriminated union collapses it — once you write
+> `const { iconName } = defineProps<Props>()`, the type system can't tell
+> which variant you're in. The conventional workaround is to alias the
+> non-destructured `props` (as above), or split into two components.
 
 ## Why not just optional props?
 

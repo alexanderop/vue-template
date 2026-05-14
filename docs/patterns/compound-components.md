@@ -1,5 +1,11 @@
 # Compound components
 
+> _No in-repo example yet — pattern proposal._ `BaseCard` uses named slots
+> (`#header`, `#footer`); none of the `Base*` components use the
+> `provide`/`inject` compound shape below. Reach for this pattern when a
+> flat component's surface starts collecting flags or fork-by-variant
+> templates.
+
 A pattern for components whose internal structure the caller needs to control —
 without exposing a wall of boolean / slot-name props.
 

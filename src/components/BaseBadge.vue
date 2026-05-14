@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineExpose({})
-
 type BadgeVariant = 'danger' | 'default' | 'primary' | 'success'
 
 interface Props {

@@ -34,11 +34,12 @@
         "eslint/no-nested-ternary": "error",
         "typescript/consistent-type-assertions": ["error", { "assertionStyle": "never" }],
 
-        "local/no-hardcoded-colors": "warn",
+        "local/no-hardcoded-colors": "error",
         "local/composable-must-use-vue": "error",
-        "local/no-let-in-describe": "error",
         "local/extract-condition-variable": "warn",
-        "local/repository-trycatch": "error",
+        "local/no-unchecked-result": "error",
+        "local/no-layer-skip": "error",
+        "local/no-prop-callbacks": "error",
         "local/no-enum": "error",
         "local/no-else": "error",
         "local/no-try-statement": "error",
@@ -59,6 +60,8 @@
     {
       "files": ["test/unit/**/*.{test,spec}.{js,ts}"],
       "rules": {
+        "local/no-let-in-describe": "error",
+
         "vitest-js/prefer-to-be": "warn",
         "vitest-js/prefer-to-have-length": "warn",
         "vitest-js/prefer-to-contain": "warn",

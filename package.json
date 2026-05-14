@@ -1,7 +1,36 @@
 {
   "name": "vue-template",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
+  "description": "Opinionated Vue 3 starter optimized for AI coding agents — TypeScript, Vite, Pinia, Tailwind v4, PWA, and a custom oxlint rule set that encodes the project's style.",
+  "keywords": [
+    "agent-optimized",
+    "ai-agent",
+    "claude-code",
+    "oxlint",
+    "pinia",
+    "pwa",
+    "starter",
+    "tailwindcss",
+    "template",
+    "typescript",
+    "vite",
+    "vue",
+    "vue3"
+  ],
+  "homepage": "https://github.com/alexopalic/vue-template#readme",
+  "bugs": {
+    "url": "https://github.com/alexopalic/vue-template/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Alexander Opalic",
+    "email": "opalicalexander@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexopalic/vue-template.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineExpose({})
-
 type IconName = 'check' | 'edit' | 'filter' | 'plus' | 'trash' | 'x'
 type IconSize = 'lg' | 'md' | 'sm'
 

@@ -6,8 +6,6 @@ import BaseButton from '@/components/BaseButton.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
 import { useTodoStore } from '@/stores/todo'
 
-defineExpose({})
-
 const store = useTodoStore()
 const newTodoTitle = ref('')
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef')

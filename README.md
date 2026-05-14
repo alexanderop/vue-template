@@ -28,7 +28,7 @@ template tries to remove each of those:
 - **Fast, deterministic check loop**: `pnpm type-check && pnpm lint && pnpm test:unit`
   finishes in seconds and is the single command an agent runs to declare a
   change done.
-- **Three test tiers** (Vitest jsdom, Vitest browser via Playwright, Playwright
+- **Three test tiers** (Vitest unit / Vitest browser via Playwright / Playwright
   e2e) so an agent can pick the cheapest level that actually proves the change.
 
 ## Stack
@@ -42,7 +42,7 @@ template tries to remove each of those:
 - **VueUse** — composable utilities
 - **vite-plugin-pwa** — PWA support
 - **oxlint** + **oxfmt** — Rust-based lint and format, with custom local rules
-- **Vitest** — unit (jsdom) + browser (Playwright provider) tests
+- **Vitest** — unit (node env) + browser (Playwright provider) tests
 - **Playwright** — e2e tests
 - **knip** — unused exports / files / deps
 
@@ -57,7 +57,7 @@ template tries to remove each of those:
 | `pnpm type-check`   | `vue-tsc --build`                         |
 | `pnpm lint`         | `oxlint . --fix`                          |
 | `pnpm format`       | `oxfmt src/ test/ e2e/`                   |
-| `pnpm test:unit`    | Vitest unit project (jsdom)               |
+| `pnpm test:unit`    | Vitest unit project (node env)            |
 | `pnpm test:browser` | Vitest browser project (Playwright)       |
 | `pnpm test:e2e`     | Playwright e2e — `pnpm build` first on CI |
 | `pnpm knip`         | report unused exports / files / deps      |
@@ -98,6 +98,27 @@ pnpm build      # required on CI
 pnpm test:e2e
 ```
 
+## Making it yours
+
+The Todo app is the **reference feature**, not the product. When you fork:
+
+1. Replace branding in `index.html` (`<title>`, `theme-color`) and
+   `vite.config.ts` (PWA `manifest.name`/`short_name`/`description`/`theme_color`).
+2. Rename the `name` in `package.json` and clear the keywords you don't want.
+3. Build your first feature next to `src/components/todo/` following
+   [`docs/guides/adding-a-feature.md`](./docs/guides/adding-a-feature.md).
+4. When the second feature lands, delete the Todo feature
+   (`src/{components/todo,stores/todo.ts,types/todo.ts,views/TodoPage.vue}`
+   plus its tests and route entry).
+
+## Disagree with a rule?
+
+The custom lint rules are this template's defaults, not a manifesto. Each
+rule lives in a tiny `eslint-local-rules/*.mjs` file plus one line in
+`.oxlintrc.json`. To soften or drop a rule, lower it to `"warn"` / `"off"`
+or delete the file and its `plugin.mjs` registration — then update the
+matching `docs/patterns/*.md` so contributors know the convention changed.
+
 ## IDE setup
 
 [VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
@@ -106,3 +127,13 @@ pnpm test:e2e
 
 - Node.js `^20.19.0 || >=22.12.0`
 - [pnpm](https://pnpm.io/) `10.28.2+`
+
+## Windows note
+
+`CLAUDE.md` is a symlink to `AGENTS.md`. On Windows clones, set
+`git config --global core.symlinks true` before cloning, or replace the
+symlink with a duplicate file — both names should contain the same content.
+
+## License
+
+[MIT](./LICENSE) © 2026 Alexander Opalic
