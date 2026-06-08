@@ -49,7 +49,7 @@
     "postinstall": "simple-git-hooks"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.3.0",
     "@vueuse/core": "^14.2.1",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.2.1",
